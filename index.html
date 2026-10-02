@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1 Week Ultimatum — Muhoozi vs Otafiire</title>
+  <meta name="description" content="Gen. Muhoozi Kainerugaba has given Maj Gen Kahinda Otafiire exactly one week to apologise. Live countdown.">
+  <meta property="og:title" content="1 Week Ultimatum — Muhoozi vs Otafiire">
+  <meta property="og:description" content="I hear my junior MG.Otafiire made some statements in parliament against me. I’m giving him exactly 1 week to apologise to me or else he will see.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #060607;
+      --panel: #0e0e11;
+      --red: #ff1a1a;
+      --gold: #d4af37;
+      --text: #f2f2f2;
+      --muted: #8e8e8e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem 2.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #glow {
+      position: fixed;
+      width: 1200px;
+      height: 1200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,26,26,0.14) 0%, transparent 60%);
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+      animation: breathe 4s ease-in-out infinite;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+      50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+    }
+
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.15) 3px,
+        rgba(0,0,0,0.15) 6px
+      );
+      pointer-events: none;
+      z-index: 30;
+      opacity: 0.25;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 880px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,26,26,0.12);
+      border: 1px solid rgba(255,26,26,0.4);
+      color: var(--red);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1.1rem;
+    }
+
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,26,26,0.7); }
+      50% { opacity: 0.5; box-shadow: 0 0 0 8px rgba(255,26,26,0); }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.55rem, 4.5vw, 2.35rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    h1 span {
+      color: var(--red);
+      text-shadow: 0 0 30px rgba(255,26,26,0.5);
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* TIMER — dominant */
+    .timer-wrap {
+      position: relative;
+      margin: 0 auto 1.4rem;
+      padding: 1.9rem 1rem 1.6rem;
+      background: linear-gradient(180deg, rgba(20,20,24,0.92) 0%, rgba(10,10,12,0.96) 100%);
+      border: 1px solid #222;
+      border-radius: 6px;
+      box-shadow: 0 0 60px rgba(255,26,26,0.08), inset 0 1px 0 rgba(255,255,255,0.03);
+      overflow: hidden;
+    }
+
+    .timer-wrap::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      animation: scan 3s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .unit { padding: 0.4rem 0; }
+
+    .digits {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 12.5vw, 6.2rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-shadow: 0 0 25px rgba(255,26,26,0.35), 0 0 60px rgba(255,26,26,0.15);
+      transition: color 0.5s ease, text-shadow 0.5s ease, transform 0.25s ease;
+    }
+
+    .digits.tick { transform: scale(1.035); }
+
+    .label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(0.62rem, 1.7vw, 0.78rem);
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 0.55rem;
+    }
+
+    .deadline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.07em;
+      margin-top: 1.35rem;
+    }
+
+    .status {
+      font-size: clamp(0.98rem, 2.6vw, 1.2rem);
+      font-weight: 600;
+      color: var(--muted);
+      min-height: 1.5em;
+      margin-bottom: 1.6rem;
+      letter-spacing: 0.02em;
+      transition: all 0.4s ease;
+    }
+
+    .status.critical {
+      color: var(--red);
+      text-shadow: 0 0 18px rgba(255,26,26,0.45);
+      animation: statusPulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Story / context */
+    .story {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid #1e1e22;
+      border-radius: 5px;
+      padding: 1.15rem 1.25rem;
+      margin-bottom: 1.4rem;
+      text-align: left;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #c8c8c8;
+    }
+
+    .story h3 {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .story p { margin-bottom: 0.7rem; }
+    .story p:last-child { margin-bottom: 0; }
+    .story strong { color: var(--text); font-weight: 600; }
+
+    .story .quote {
+      border-left: 2px solid rgba(255,26,26,0.45);
+      padding-left: 0.85rem;
+      margin: 0.75rem 0;
+      color: #ddd;
+      font-style: italic;
+    }
+
+    /* Who pills */
+    .who-mini {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+
+    .who-pill {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #222;
+      border-radius: 4px;
+      padding: 0.5rem 0.95rem;
+      font-size: 0.76rem;
+      text-align: left;
+    }
+
+    .who-pill .role {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.12rem;
+    }
+
+    /* Full tweet */
+    .tweet-box {
+      background: rgba(255,26,26,0.06);
+      border: 1px solid rgba(255,26,26,0.28);
+      border-left: 3px solid var(--red);
+      border-radius: 4px;
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #e8e8e8;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .tweet-box .meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.65rem;
+      letter-spacing: 0.03em;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.55rem 1.15rem;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 0 18px rgba(255,26,26,0.28);
+    }
+
+    .btn-primary:hover {
+      background: #ff3333;
+      transform: translateY(-1px);
+      box-shadow: 0 0 26px rgba(255,26,26,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid #333;
+    }
+
+    .btn-secondary:hover {
+      border-color: #555;
+      color: var(--text);
+    }
+
+    .footer {
+      font-size: 0.66rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    #final-state {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #030303;
+      z-index: 100;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    #final-state.active { display: flex; }
+
+    #final-state h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.3rem, 8.5vw, 4.3rem);
+      color: var(--red);
+      text-shadow: 0 0 50px rgba(255,26,26,0.7);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.15rem;
+      animation: finalBeat 1.6s ease-in-out infinite;
+    }
+
+    @keyframes finalBeat {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.04); opacity: 0.9; }
+    }
+
+    #final-state p {
+      font-size: 1.1rem;
+      color: #999;
+      max-width: 400px;
+    }
+
+    @media (max-width: 600px) {
+      .digits { font-size: 2.7rem; }
+      .timer { gap: 0.2rem; }
+      .who-mini { flex-direction: column; align-items: center; }
+      body { padding: 1.2rem 0.7rem 2rem; }
+      .story { font-size: 0.84rem; }
+      .tweet-box { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="glow"></div>
+  <div class="scanlines"></div>
+
+  <div class="container">
+    <div class="badge">Live Ultimatum</div>
+
+    <h1>1 Week to <span>Apologise</span></h1>
+    <p class="sub">The clock is running</p>
+
+    <!-- TIMER -->
+    <div class="timer-wrap">
+      <div class="timer">
+        <div class="unit">
+          <div class="digits" id="days">00</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="unit">
+          <div class="digits" id="hours">00</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="unit">
+          <div class="digits" id="mins">00</div>
+          <div class="label">Mins</div>
+        </div>
+        <div class="unit">
+          <div class="digits" id="secs">00</div>
+          <div class="label">Secs</div>
+        </div>
+      </div>
+      <div class="deadline">Deadline • 9 October 2026 • 16:28 EAT</div>
+    </div>
+
+    <div class="status" id="status">The clock is running…</div>
+
+    <!-- Full original tweet -->
+    <div class="tweet-box">
+      “I hear my junior MG.Otafiire made some statements in parliament against me. I’m giving him exactly 1 week to apologise to me or else he will see.”
+      <div class="meta">— Gen. Muhoozi Kainerugaba • 2 October 2026</div>
+    </div>
+
+    <!-- Story / context -->
+    <div class="story">
+      <h3>What led to this</h3>
+      <p>On <strong>30 September 2026</strong>, Maj Gen (Rtd) Kahinda Otafiire was in Parliament presenting the Water & Environment sector report. In his maiden speech to the 12th Parliament he said:</p>
+      <div class="quote">“The hallmark of civilization is how people resolve contradiction without violence. When you see a General who prefers violence as the best means of solving problems, then there is a problem. The greatest Generals I know of are those who resolve problems without shooting a bullet.”</div>
+      <p>He named no one. But the remarks came amid long-running tension with Gen. Muhoozi Kainerugaba over succession politics and the use of force. Two days later Muhoozi responded with the public one-week deadline above.</p>
+    </div>
+
+    <!-- Who -->
+    <div class="who-mini">
+      <div class="who-pill">
+        <div class="role">SET THE DEADLINE</div>
+        <strong>Gen. Muhoozi Kainerugaba</strong><br>
+        Chief of Defence Forces
+      </div>
+      <div class="who-pill">
+        <div class="role">GIVEN 1 WEEK</div>
+        <strong>Maj Gen Kahinda Otafiire</strong><br>
+        Minister & bush-war veteran
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="shareBtn">Share this ultimatum</button>
+      <button class="btn btn-secondary" id="copyBtn">Copy link</button>
+    </div>
+
+    <div class="footer">
+      Independent live tracker • Not an official government page
+    </div>
+  </div>
+
+  <div id="final-state">
+    <h2>HE WILL SEE</h2>
+    <p>The one-week deadline has expired.<br>No apology was recorded in time.</p>
+  </div>
+
+  <script>
+    const deadline = new Date('2026-10-09T13:28:00Z').getTime();
+
+    const daysEl   = document.getElementById('days');
+    const hoursEl  = document.getElementById('hours');
+    const minsEl   = document.getElementById('mins');
+    const secsEl   = document.getElementById('secs');
+    const statusEl = document.getElementById('status');
+    const glowEl   = document.getElementById('glow');
+    const finalEl  = document.getElementById('final-state');
+    const allDigits = [daysEl, hoursEl, minsEl, secsEl];
+
+    let lastSecond = -1;
+
+    function update() {
+      const now  = Date.now();
+      const diff = deadline - now;
+
+      if (diff <= 0) {
+        allDigits.forEach(el => el.textContent = '00');
+        statusEl.textContent = 'TIME IS UP';
+        statusEl.className = 'status critical';
+        finalEl.classList.add('active');
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      if (s !== lastSecond) {
+        secsEl.classList.add('tick');
+        setTimeout(() => secsEl.classList.remove('tick'), 180);
+        lastSecond = s;
+      }
+
+      daysEl.textContent  = String(d).padStart(2, '0');
+      hoursEl.textContent = String(h).padStart(2, '0');
+      minsEl.textContent  = String(m).padStart(2, '0');
+      secsEl.textContent  = String(s).padStart(2, '0');
+
+      const totalHours = diff / (1000 * 60 * 60);
+      let message = 'The clock is running…';
+      let intensity = 0.7;
+
+      if (totalHours <= 24) {
+        message = 'FINAL 24 HOURS';
+        intensity = 1.4;
+        statusEl.className = 'status critical';
+        allDigits.forEach(el => {
+          el.style.color = '#ff3b3b';
+          el.style.textShadow = '0 0 30px rgba(255,50,50,0.6), 0 0 70px rgba(255,30,30,0.3)';
+        });
+      } else if (totalHours <= 48) {
+        message = 'Less than 48 hours remaining';
+        intensity = 1.15;
+        statusEl.className = 'status critical';
+      } else if (d <= 2) {
+        message = d === 1 ? 'ONE DAY REMAINING' : d + ' DAYS REMAINING';
+        intensity = 1.0;
+        statusEl.className = 'status critical';
+      } else if (d <= 4) {
+        message = d + ' days remaining';
+        intensity = 0.85;
+        statusEl.className = 'status';
+      } else {
+        statusEl.className = 'status';
+      }
+
+      statusEl.textContent = message;
+      glowEl.style.opacity = intensity;
+      glowEl.style.transform = 'translate(-50%, -50%) scale(' + (0.95 + intensity * 0.15) + ')';
+    }
+
+    update();
+    setInterval(update, 1000);
+
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      const text = 'I hear my junior MG.Otafiire made some statements in parliament against me. I’m giving him exactly 1 week to apologise to me or else he will see.\n\nLive countdown:';
+      const url = window.location.href;
+      if (navigator.share) {
+        try { await navigator.share({ title: '1 Week Ultimatum', text, url }); } catch(e) {}
+      } else {
+        navigator.clipboard.writeText(text + '\n' + url);
+        alert('Copied — ready to paste');
+      }
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(window.location.href);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy link', 1500);
+    });
+  </script>
+</body>
+</html>
