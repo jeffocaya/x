@@ -39,6 +39,8 @@
       overflow-x: hidden;
     }
 
+    body.modal-open { overflow: hidden; }
+
     #glow {
       position: fixed;
       width: 1200px;
@@ -132,10 +134,10 @@
       margin-bottom: 1.75rem;
     }
 
-    /* TIMER — dominant */
+    /* TIMER */
     .timer-wrap {
       position: relative;
-      margin: 0 auto 1.4rem;
+      margin: 0 auto 1.1rem;
       padding: 1.9rem 1rem 1.6rem;
       background: linear-gradient(180deg, rgba(20,20,24,0.92) 0%, rgba(10,10,12,0.96) 100%);
       border: 1px solid #222;
@@ -204,7 +206,7 @@
       font-weight: 600;
       color: var(--muted);
       min-height: 1.5em;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.1rem;
       letter-spacing: 0.02em;
       transition: all 0.4s ease;
     }
@@ -220,7 +222,62 @@
       50% { opacity: 0.7; }
     }
 
-    /* Story / context */
+    /* Button under timer */
+    .wa-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid rgba(255,26,26,0.45);
+      color: var(--red);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.65rem 1.3rem;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-bottom: 1.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .wa-trigger:hover {
+      background: rgba(255,26,26,0.12);
+      border-color: var(--red);
+      box-shadow: 0 0 20px rgba(255,26,26,0.2);
+    }
+
+    .wa-trigger svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Tweet */
+    .tweet-box {
+      background: rgba(255,26,26,0.06);
+      border: 1px solid rgba(255,26,26,0.28);
+      border-left: 3px solid var(--red);
+      border-radius: 4px;
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #e8e8e8;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .tweet-box .meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.65rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Story */
     .story {
       background: rgba(255,255,255,0.025);
       border: 1px solid #1e1e22;
@@ -254,13 +311,13 @@
       font-style: italic;
     }
 
-    /* Who pills */
+    /* Who */
     .who-mini {
       display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.5rem;
     }
 
     .who-pill {
@@ -278,31 +335,6 @@
       color: var(--gold);
       letter-spacing: 0.08em;
       margin-bottom: 0.12rem;
-    }
-
-    /* Full tweet */
-    .tweet-box {
-      background: rgba(255,26,26,0.06);
-      border: 1px solid rgba(255,26,26,0.28);
-      border-left: 3px solid var(--red);
-      border-radius: 4px;
-      padding: 1rem 1.15rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #e8e8e8;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-    }
-
-    .tweet-box .meta {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      margin-top: 0.65rem;
-      letter-spacing: 0.03em;
     }
 
     .actions {
@@ -353,12 +385,139 @@
       line-height: 1.5;
     }
 
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: #111114;
+      border: 1px solid #2a2a2e;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      padding: 1.75rem 1.5rem 1.5rem;
+      position: relative;
+      transform: translateY(12px) scale(0.97);
+      transition: transform 0.25s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.2rem;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover { color: #fff; }
+
+    .modal h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    .modal p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.45;
+    }
+
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .modal input {
+      background: #0a0a0c;
+      border: 1px solid #2a2a2e;
+      border-radius: 4px;
+      padding: 0.75rem 0.95rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .modal input:focus {
+      border-color: rgba(255,26,26,0.55);
+    }
+
+    .modal input::placeholder { color: #555; }
+
+    .modal button[type="submit"] {
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.25rem;
+      box-shadow: 0 0 18px rgba(255,26,26,0.25);
+    }
+
+    .modal button[type="submit"]:hover {
+      background: #ff3333;
+      box-shadow: 0 0 26px rgba(255,26,26,0.4);
+    }
+
+    .modal button[type="submit"]:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .modal-note {
+      font-size: 0.72rem;
+      color: #555;
+      margin-top: 0.85rem;
+      text-align: center;
+    }
+
+    /* Final state */
     #final-state {
       display: none;
       position: fixed;
       inset: 0;
       background: #030303;
-      z-index: 100;
+      z-index: 200;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -435,13 +594,19 @@
 
     <div class="status" id="status">The clock is running…</div>
 
+    <!-- Button that opens modal -->
+    <button class="wa-trigger" id="openModal" type="button">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Join WhatsApp Group
+    </button>
+
     <!-- Full original tweet -->
     <div class="tweet-box">
       “I hear my junior MG.Otafiire made some statements in parliament against me. I’m giving him exactly 1 week to apologise to me or else he will see.”
       <div class="meta">— Gen. Muhoozi Kainerugaba • 2 October 2026</div>
     </div>
 
-    <!-- Story / context -->
+    <!-- Story -->
     <div class="story">
       <h3>What led to this</h3>
       <p>On <strong>30 September 2026</strong>, Maj Gen (Rtd) Kahinda Otafiire was in Parliament presenting the Water & Environment sector report. In his maiden speech to the 12th Parliament he said:</p>
@@ -473,12 +638,32 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="closeModal" type="button" aria-label="Close">&times;</button>
+      <h2 id="modalTitle">Join the WhatsApp Group</h2>
+      <p>Request to be added to the private group for updates on this ultimatum.</p>
+      <form id="waForm" action="https://formsubmit.co/hijeffocaya@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="WhatsApp Group Request — Ultimatum Tracker">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="">
+        <input type="text" name="name" placeholder="Your name" required autocomplete="name">
+        <input type="tel" name="whatsapp" placeholder="WhatsApp number (with country code)" required autocomplete="tel">
+        <button type="submit" id="submitBtn">Request to Join</button>
+      </form>
+      <p class="modal-note">You’ll be added once the request is reviewed.</p>
+    </div>
+  </div>
+
   <div id="final-state">
     <h2>HE WILL SEE</h2>
     <p>The one-week deadline has expired.<br>No apology was recorded in time.</p>
   </div>
 
   <script>
+    // ===== COUNTDOWN =====
     const deadline = new Date('2026-10-09T13:28:00Z').getTime();
 
     const daysEl   = document.getElementById('days');
@@ -556,6 +741,40 @@
     update();
     setInterval(update, 1000);
 
+    // ===== MODAL =====
+    const modal = document.getElementById('modal');
+    const openBtn = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+
+    function openModal() {
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      // focus first input
+      setTimeout(() => modal.querySelector('input[name="name"]').focus(), 100);
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    // Click outside to close
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Set _next so form returns to same page after submit
+    document.querySelector('input[name="_next"]').value = window.location.href;
+
+    // ===== SHARE =====
     document.getElementById('shareBtn').addEventListener('click', async () => {
       const text = 'I hear my junior MG.Otafiire made some statements in parliament against me. I’m giving him exactly 1 week to apologise to me or else he will see.\n\nLive countdown:';
       const url = window.location.href;
